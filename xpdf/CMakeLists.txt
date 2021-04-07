@@ -331,8 +331,10 @@ add_library(xpdf STATIC
   #TileCompositor.cc
   #TileMap.cc
   UnicodeMap.cc
+  UnicodeRemapping.cc
   UnicodeTypeTable.cc
   UTF8.cc
+  XFAScanner.cc
   XRef.cc
   Zoox.cc
 )
