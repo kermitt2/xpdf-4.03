@@ -309,6 +309,7 @@ add_library(xpdf STATIC
   Parser.cc
   PDFCore.cc
   #pdfdetach.cc
+  PDF417Barcode.cc
   PDFDoc.cc
   PDFDocEncoding.cc
   #pdffonts.cc
