@@ -18,3 +18,4 @@ build
 */Makefile
 Makefile
 CMakeFiles/*
+CMakeCache.txt

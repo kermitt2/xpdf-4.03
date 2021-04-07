@@ -14,23 +14,29 @@ project(xpdf)
 
 include(cmake-config.txt)
 
+if (HAVE_PAPER_H)
+  set(PAPER_LIBRARY ${HAVE_PAPER_H})
+else ()
+  set(PAPER_LIBRARY "")
+endif ()
+
 add_subdirectory(goo)
 add_subdirectory(fofi)
 add_subdirectory(splash)
 add_subdirectory(xpdf)
-add_subdirectory(xpdf-qt)
+#add_subdirectory(xpdf-qt)
 
 if (NOT HAVE_FREETYPE_H)
   message(WARNING "Couldn't find FreeType -- will not build pdftoppm, pdftopng, pdftohtml, or xpdf.")
 endif ()
 
-if (NOT PNG_FOUND)
-  message(WARNING "Couldn't find libpng -- will not build pdftopng or pdftohtml.")
-endif ()
+#if (NOT PNG_FOUND)
+#  message(WARNING "Couldn't find libpng -- will not build pdftopng or pdftohtml.")
+#endif ()
 
-if (NOT QT4_FOUND AND NOT Qt5Widgets_FOUND)
-  message(WARNING "Couldn't find Qt4 or Qt5 -- will not build xpdf.")
-endif ()
+#if (NOT QT4_FOUND AND NOT Qt5Widgets_FOUND)
+#  message(WARNING "Couldn't find Qt4 or Qt5 -- will not build xpdf.")
+#endif ()
 
 if (NOT MULTITHREADED)
   message(WARNING "Multithreading is disabled -- will not build xpdf.")

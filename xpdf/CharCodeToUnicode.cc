@@ -232,6 +232,10 @@ CharCodeToUnicode *CharCodeToUnicode::make8BitToUnicode(Unicode *toUnicode) {
   return new CharCodeToUnicode(NULL, toUnicode, 256, gTrue, NULL, 0, 0);
 }
 
+CharCodeToUnicode *CharCodeToUnicode::makeUnicodeToUnicode(GString *fontname, Unicode *toUnicode, int lenA) {
+    return new CharCodeToUnicode(fontname->copy(), toUnicode, lenA, gTrue, NULL, 0, 0);
+}
+
 CharCodeToUnicode *CharCodeToUnicode::parseCMap(GString *buf, int nBits) {
   CharCodeToUnicode *ctu;
   GStringIndex idx;
@@ -706,13 +710,11 @@ void CharCodeToUnicode::setMapping(CharCode c, Unicode *u, int len) {
 int CharCodeToUnicode::mapToUnicode(CharCode c, Unicode *u, int size) {
   int i, j;
 
-  if (!map) {
-    u[0] = (Unicode)c;
-    return 1;
-  }
-  if (c >= mapLen) {
+  if (c >= mapLen || !map) {
     return 0;
   }
+  //AA : when no mapping 0 is default, to be catched later for recognition
+  u[0] = map[c];
   if (map[c]) {
     u[0] = map[c];
     return 1;
