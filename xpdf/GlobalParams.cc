@@ -24,7 +24,11 @@
 #include <paper.h>
 #endif
 #if HAVE_FONTCONFIG
-#  include <fontconfig/fontconfig.h>
+#  if __APPLE__
+#     include </usr/local/include/fontconfig/fontconfig.h>
+#  else
+#     include <fontconfig/fontconfig.h>
+#endif
 #endif
 #include "gmem.h"
 #include "gmempp.h"
